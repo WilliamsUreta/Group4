@@ -71,31 +71,33 @@ public class DataLoader implements CommandLineRunner{
         
         for (int i = 0; i < 5; i++) {
             Categoria categoria = new Categoria();
-            categoria.setCategoria(faker.cat().name());
+            i = i + 1;
+            categoria.setCategoria(faker.warhammerFantasy().factions());
             categoriaRepository.save(categoria);
         }
          List<Categoria> Lcategorias = categoriaRepository.findAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             EstadoDeVenta estadoDeVenta = new EstadoDeVenta();
+            i = i + 1;
             estadoDeVenta.setEstado(faker.options().option("Disponible", "No disponible"));
             estadoDeVentaRepository.save(estadoDeVenta);
         }
 
         List<EstadoDeVenta> LestadoDeVenta = estadoDeVentaRepository.findAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             MetodoPago metodoPago = new MetodoPago();
-
+            i = i + 1;
             metodoPago.setMetodoPago(faker.options().option("Devito","Credito","Efectivo"));
             metodoPagoRepository.save(metodoPago);
         }
 
         List<MetodoPago> LmetodoPago = metodoPagoRepository.findAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             Producto producto = new Producto();
-
+            i = i + 1;
             producto.setNombre(faker.name().firstName());
             producto.setFechaCaducidad(new Date(System.currentTimeMillis() + faker.number().numberBetween(10000000, 999999999)));
             producto.setPrecio(faker.number().numberBetween(2500, 10000));
@@ -107,26 +109,26 @@ public class DataLoader implements CommandLineRunner{
 
         List<Producto> Lproduto = productoRepository.findAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             Prod_Categoria prod_Categoria = new Prod_Categoria();
-
+            i = i + 1;
             prod_Categoria.setCategoria(Lcategorias.get(random.nextInt(Lcategorias.size())));
             prod_Categoria.setProducto(Lproduto.get(random.nextInt(Lproduto.size())));
             prod_CategoriaRepository.save(prod_Categoria);
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             TipoUsuario tipoUsuario = new TipoUsuario();
-
+            i = i + 1;
             tipoUsuario.setNombre(faker.options().option("Cliente","Trabajador","Desarrollador"));
             tipoUsuarioRepository.save(tipoUsuario);
         }
 
         List<TipoUsuario> LtipoUsuarios = tipoUsuarioRepository.findAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             Usuario usuario = new Usuario();
-  
+            i = i + 1;
             usuario.setNombre(faker.name().firstName());
             usuario.setCorreo(faker.internet().emailAddress());
             usuario.setContraseña(faker.random().toString());
@@ -134,8 +136,9 @@ public class DataLoader implements CommandLineRunner{
             usuarioRepository.save(usuario);
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             Ventas ventas = new Ventas();
+            i = i + 1;
             ventas.setFechaCompra(LocalDate.now());
             ventas.setHoraCompra(LocalTime.now());
             ventas.setTotalVenta(faker.number().numberBetween(7500, 30000));
@@ -146,9 +149,9 @@ public class DataLoader implements CommandLineRunner{
         
         List<Ventas> Lventas = ventasRepository.findAll();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             ProductosVentas productosVentas = new ProductosVentas();
-          
+            i = i + 1;
             productosVentas.setProducto(Lproduto.get(random.nextInt(Lproduto.size())));
             productosVentas.setVentas(Lventas.get(random.nextInt(Lventas.size())));
             productosVentasRepository.save(productosVentas);

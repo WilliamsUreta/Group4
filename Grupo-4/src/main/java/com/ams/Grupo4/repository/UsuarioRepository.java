@@ -16,11 +16,9 @@ import com.ams.Grupo4.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
         
-        // Buscar usuario por correo
         @Query("SELECT correo FROM Usuario WHERE correo = :correo")
         List<Usuario> findByCorreo(@Param("correo")String correo);
         
-        // Buscar usuarios por nombre (búsqueda parcial)
         @Query("SELECT nombre FROM Usuario WHERE nombre = :nombre")
         List<Usuario> findByNombreContaining(@Param("nombre")String nombre);
 
